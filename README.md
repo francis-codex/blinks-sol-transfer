@@ -1,50 +1,17 @@
 # blinks-sol-transfer
 
-This project is generated with the [create-solana-dapp](https://github.com/solana-developers/create-solana-dapp) generator.
+A Solana Action (blink) that lets anyone send SOL to a wallet straight from a link, for example a post on X.
 
-## Getting Started
+- **`web/app/api/transfer-sol/route.ts`:** the Action. `GET` returns the card (title, icon, buttons for 1, 5 and 10 SOL, plus a custom amount). `POST` builds a `SystemProgram.transfer` to the `to` address and returns it for the wallet to sign.
+- **`web/app/Actions.json/route.ts`:** the `actions.json` rules that map the site to its Action endpoints, so blink clients can find them.
 
-### Prerequisites
+## Run
 
-- Node v18.18.0 or higher
-
-### Installation
-
-#### Clone the repo
-
-```shell
-git clone <repo-url>
-cd <repo-name>
-```
-
-#### Install Dependencies
-
-```shell
+```bash
 npm install
-```
-
-#### Start the web app
-
-```
 npm run dev
 ```
 
-## Apps
+Test the Action at `http://localhost:3000/api/transfer-sol?to=<wallet>` with [dial.to](https://dial.to) or any blink client.
 
-### web
-
-This is a React app.
-
-#### Commands
-
-Start the web app
-
-```shell
-npm run dev
-```
-
-Build the web app
-
-```shell
-npm run build
-```
+Stack: Next.js 14, `@solana/actions`, `@solana/web3.js`. Scaffolded with create-solana-dapp.
